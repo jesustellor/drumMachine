@@ -1,7 +1,7 @@
 
 
-let handleButton = (event) => {
-    var x = event.key;
+let handleButton = () => {
+  let x = Event.key
     if(x === 'q'){
       let audio = new Audio("https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3");
       audio.play();
@@ -35,3 +35,8 @@ let handleButton = (event) => {
   }
 
   export default handleButton;
+
+//   let firstAudios = { 
+//     firstSound: ['https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3', 'https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3']   }
+
+// export default firstAudios;

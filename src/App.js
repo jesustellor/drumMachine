@@ -93,110 +93,38 @@ function App() {
 
 
   let handleButton = (x) => {
-    console.log(x);
-    console.log(state.switchSound);
-    console.log(state.powerSwitch);
 
+    let decision = () => {
+      if(state.powerSwitch){
+        if(state.switchSound){
+          let audio = new Audio(state.firstSound[x]);
+          audio.play();} else {
+            let audio = new Audio(state.secondSound[x]);
+            audio.play();
+          }
+      } else {
+        return
+      }
+    }
+    
       if(x === 0){
-        if(state.powerSwitch){
-          if(state.switchSound){
-            let audio = new Audio(state.firstSound[x]);
-            audio.play();} else {
-              let audio = new Audio(state.secondSound[x]);
-              audio.play();
-            }
-        } else {
-          return
-        }
-
+        decision();
       }else if(x === 1){
-        if(state.powerSwitch){
-          if(state.switchSound){
-            let audio = new Audio(state.firstSound[x]);
-            audio.play();} else {
-              let audio = new Audio(state.secondSound[x]);
-              audio.play();
-            }
-        } else {
-          return
-        }
+        decision();
       }else if(x === 2){   
-        if(state.powerSwitch){
-          if(state.switchSound){
-            let audio = new Audio(state.firstSound[x]);
-            audio.play();} else {
-              let audio = new Audio(state.secondSound[x]);
-              audio.play();
-            }
-        } else {
-          return
-        }
+        decision();
       }else if(x === 3){
-        if(state.powerSwitch){
-          if(state.switchSound){
-            let audio = new Audio(state.firstSound[x]);
-            audio.play();} else {
-              let audio = new Audio(state.secondSound[x]);
-              audio.play();
-            }
-        } else {
-          return
-        }
+        decision();
       }else if(x === 4){
-        if(state.powerSwitch){
-          if(state.switchSound){
-            let audio = new Audio(state.firstSound[x]);
-            audio.play();} else {
-              let audio = new Audio(state.secondSound[x]);
-              audio.play();
-            }
-        } else {
-          return
-        }
+        decision();
       }else if(x === 5){
-        if(state.powerSwitch){
-          if(state.switchSound){
-            let audio = new Audio(state.firstSound[x]);
-            audio.play();} else {
-              let audio = new Audio(state.secondSound[x]);
-              audio.play();
-            }
-        } else {
-          return
-        }
+        decision();
       }else if(x === 6){
-        if(state.powerSwitch){
-          if(state.switchSound){
-            let audio = new Audio(state.firstSound[x]);
-            audio.play();} else {
-              let audio = new Audio(state.secondSound[x]);
-              audio.play();
-            }
-        } else {
-          return
-        }
+        decision();
       }else if(x === 7){
-        if(state.powerSwitch){
-          if(state.switchSound){
-            let audio = new Audio(state.firstSound[x]);
-            audio.play();} else {
-              let audio = new Audio(state.secondSound[x]);
-              audio.play();
-            }
-        } else {
-          return
-        }
+        decision();
       }else if(x === 8){   
-        if(state.powerSwitch){
-          if(state.switchSound){
-            let audio = new Audio(state.firstSound[x]);
-            audio.play();} else {
-              let audio = new Audio(state.secondSound[x]);
-              audio.play();
-            }
-        } else {
-          return
-        }
+        decision();
       }  
     }
 

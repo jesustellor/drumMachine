@@ -1,150 +1,165 @@
-import { useState } from 'react';
-// import handleClick from './controllers/clickAudio';
-import './App.css';
+import React, { useEffect, useState } from 'react'
 
-function Square(props) {
-    return(
-        <button className='square'
-        onClick={props.onClick}>
-          {props.value}
-        </button>
-    )
+
+
+function Buttons(props){
+  return(
+    <button onClick={props.onClick} 
+            className='buttonSounds'>
+      {props.keyBoard}
+    </button>
+  )
 }
 
-function Toggle(props) {
+function Display(props){
+  return(
+  <div>
+    <p>{props.value}</p>
+  </div>
+  )
+}
+
+function Swiches() {
   return(
     <label className="switch">
-      <input type="checkbox" onChange={props.onChange} checked={props.checked}/>
+      <input type="checkbox"/>
       <span className="slider round"></span>
     </label>
   )
 }
 
+function PageVolume(props) {
+  return(
+      <input type='range'
+             min="0"
+             max="1"
+             step="0.01"
+             onClick={props.onClick}
+            > 
+      </input>
+  )
+}
+
 function Board(props) {
-let buildSquare = (i) => {
-  return(
-    <Square value={props.value[i]} onClick={() => {props.onClick(i)}}/>
+
+let createButtons = (i) => {
+  return (
+    <Buttons keyBoard={props.keyBoard[i]} onClick={props.clicked} />
   )
 }
 
-let buildPower = () => {
+let createDisplay = () => {
+  return (
+    <Display value={props.firstDisplay} />
+  )
+} 
+
+let soundSwitch = () => {
   return(
-    <Toggle onChange={() => {props.powerChange()}} checked={props.power}/>
+    <Swiches value={props.soundSwitch} />
   )
 }
 
-let buildSwitch = () => {
+let powerSwitch = () => {
   return(
-    <Toggle onChange={() => {props.onChange()}} checked={props.switch}/>
+    <Swiches value={props.powerSwitch} />
   )
 }
 
+let createVolume = () => {
   return(
-    <div>
-      <section>
-        {buildSquare(0)}
-        {buildSquare(1)}
-        {buildSquare(2)}
-      </section>
-      <section>
-        {buildSquare(3)}
-        {buildSquare(4)}
-        {buildSquare(5)}
-      </section>
-      <section>
-        {buildSquare(6)}
-        {buildSquare(7)}
-        {buildSquare(8)}
-      </section>
-      {buildSwitch()}
-      {buildPower()}
-    </div>
-  );
+    <PageVolume />
+  )
+}
+
+  return (<div>
+  <section>
+  {createButtons(0)}
+  {createButtons(1)}
+  {createButtons(2)}
+  </section>
+  <section>
+  {createButtons(3)}
+  {createButtons(4)}
+  {createButtons(5)}
+  </section>
+  <section>
+  {createButtons(6)}
+  {createButtons(7)}
+  {createButtons(8)}
+  </section>
+  {soundSwitch()}
+  {powerSwitch()}
+  {createVolume()}
+  {createDisplay()}
+        </div>
+  )
 }
 
 function App() {
 
-  
-  let [state, setState] = useState({
-    letters: ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C'],
-    firstSound: ["https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3",
-                 "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3",
-                 "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3",
-                 "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3",
-                 "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3",
-                 "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3",
-                 "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3",
-                 "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3",
-                 "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3",
-                ],
-    secondSound: ["https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3",
-                  "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3",
-                  "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3",
-                  "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3",
-                  "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3",
-                  "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3",
-                  "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3",
-                  "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3",
-                  "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"],
-    switchSound: true,
-    powerSwitch: true,
+const [state, setState] = useState({
+  keyBoard: ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C'],
+  firstSound: ['https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3',
+               'https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3',
+               'https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3',
+               'https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3',
+               'https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3',
+               'https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3',
+               'https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3',
+               'https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3',
+               'https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3',],
+  firstDisplay: ['Heater-1', 'Heater-2', 'Heater-3', 'Heater-4', 'Heater-6',
+                 'Dsc-Oh', 'Kick-n-Hat', 'RP4-Kick', 'Cev-H3'],
+  currentDisplay: null,
+  soundSwitch: true,
+  powerSwitch: true,
+})
 
-  })
-
-
-  let handleButton = (x) => {
-
-    let decision = () => {
-      if(state.powerSwitch){
-        if(state.switchSound){
-          let audio = new Audio(state.firstSound[x]);
-          audio.play();} else {
-            let audio = new Audio(state.secondSound[x]);
-            audio.play();
-          }
-      } else {
-        return
-      }
-    }
-    
-      if(x === 0){
-        decision();
-      }else if(x === 1){
-        decision();
-      }else if(x === 2){   
-        decision();
-      }else if(x === 3){
-        decision();
-      }else if(x === 4){
-        decision();
-      }else if(x === 5){
-        decision();
-      }else if(x === 6){
-        decision();
-      }else if(x === 7){
-        decision();
-      }else if(x === 8){   
-        decision();
-      }  
-    }
-
-  let changeSound = () => {
-    setState({...state, switchSound: !state.switchSound})
-  }
-
-  let changePower = () => {
-    setState({...state, powerSwitch: !state.powerSwitch})
-  }
-
-  return(
-    <Board value={state.letters} 
-          onClick={i => handleButton(i)} 
-          onChange={() => {changeSound()}} 
-          switch={state.switchSound} 
-          power={state.powerSwitch}
-          powerChange={() => {changePower()}}/>
-  )
+let playAudio = (i) => {
+  let audio = new Audio(state.firstSound[i]);
+  audio.play();
 }
 
+let keyDown = (event) => {
+  let button = event.key;
+  console.log(button);
+  for(let i = 0; i <= state.firstSound.length; i++){
+    if(button.toUpperCase() === state.keyBoard[i]){
+      playAudio(i);
+      setState({...state, currentDisplay: state.firstDisplay[i]});
+     }
+  }
+}
+
+useEffect(() => {
+  window.addEventListener('keydown', keyDown);
+  return () => {
+    window.removeEventListener('keydown', keyDown);
+  };
+});
+
+let clicked = (event) => {
+  let click = event.target.innerText;
+  console.log(click)
+  for(let i = 0; i <= state.firstSound.length; i++){
+    if(click === state.keyBoard[i]){
+      playAudio(i);
+      setState({...state, currentDisplay: state.firstDisplay[i]});
+     }
+  }
+}
+
+
+
+  return (
+    <Board clicked={clicked}
+           firstDisplay={state.currentDisplay}
+           keyBoard={state.keyBoard}
+           powerSwitch={state.powerSwitch}
+           soundSwitch={state.soundSwitch}
+    />
+  )
+}
 
 export default App;

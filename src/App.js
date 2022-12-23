@@ -4,8 +4,7 @@ import React, { useEffect, useState } from 'react'
 
 function Buttons(props){
   return(
-    <button onClick={props.onClick} 
-            className='buttonSounds'>
+    <button className='buttonSounds' onClick={props.onClick}>
       {props.keyBoard}
     </button>
   )
@@ -31,10 +30,11 @@ function Swiches() {
 function PageVolume(props) {
   return(
       <input type='range'
+             value={props.volume}
              min="0"
              max="1"
              step="0.01"
-             onClick={props.onClick}
+             onChange={props.onChange}
             > 
       </input>
   )
@@ -44,7 +44,7 @@ function Board(props) {
 
 let createButtons = (i) => {
   return (
-    <Buttons keyBoard={props.keyBoard[i]} onClick={props.clicked} />
+    <Buttons keyBoard={props.keyBoard[i]} onClick={props.clicked} sounds={props.sounds[i]}/>
   )
 }
 
@@ -68,11 +68,11 @@ let powerSwitch = () => {
 
 let createVolume = () => {
   return(
-    <PageVolume />
+    <PageVolume volume={props.volume} onChange={props.volumeControl} />
   )
 }
 
-  return (<div>
+  return (<div ref={props.volumeref}>
   <section>
   {createButtons(0)}
   {createButtons(1)}
@@ -114,11 +114,13 @@ const [state, setState] = useState({
   currentDisplay: null,
   soundSwitch: true,
   powerSwitch: true,
+  volume: 1,
 })
 
 let playAudio = (i) => {
   let audio = new Audio(state.firstSound[i]);
   audio.play();
+  audio.volume = state.volume
 }
 
 let keyDown = (event) => {
@@ -150,10 +152,18 @@ let clicked = (event) => {
   }
 }
 
+let handleVolumeChange = (event) => {
+  let target = event.target.value
+  setState({...state, volume: target})
+}
+
 
 
   return (
     <Board clicked={clicked}
+           sounds={state.firstSound}
+           volume={state.volume}
+           volumeControl={handleVolumeChange}
            firstDisplay={state.currentDisplay}
            keyBoard={state.keyBoard}
            powerSwitch={state.powerSwitch}

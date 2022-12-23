@@ -18,10 +18,10 @@ function Display(props){
   )
 }
 
-function Swiches() {
+function Swiches(props) {
   return(
     <label className="switch">
-      <input type="checkbox"/>
+      <input type="checkbox" onChange={props.onChange} checked={props.value}/>
       <span className="slider round"></span>
     </label>
   )
@@ -33,7 +33,7 @@ function PageVolume(props) {
              value={props.volume}
              min="0"
              max="1"
-             step="0.01"
+             step="0.1"
              onChange={props.onChange}
             > 
       </input>
@@ -44,7 +44,7 @@ function Board(props) {
 
 let createButtons = (i) => {
   return (
-    <Buttons keyBoard={props.keyBoard[i]} onClick={props.clicked} sounds={props.sounds[i]}/>
+    <Buttons keyBoard={props.keyBoard[i]} onClick={props.clicked}/>
   )
 }
 
@@ -56,13 +56,13 @@ let createDisplay = () => {
 
 let soundSwitch = () => {
   return(
-    <Swiches value={props.soundSwitch} />
+    <Swiches value={props.soundSwitch} onChange={props.switch}/>
   )
 }
 
 let powerSwitch = () => {
   return(
-    <Swiches value={props.powerSwitch} />
+    <Swiches value={props.powerSwitch} onChange={props.power}/>
   )
 }
 
@@ -72,7 +72,7 @@ let createVolume = () => {
   )
 }
 
-  return (<div ref={props.volumeref}>
+  return (<div>
   <section>
   {createButtons(0)}
   {createButtons(1)}
@@ -123,6 +123,15 @@ let playAudio = (i) => {
   audio.volume = state.volume
 }
 
+let secondAudio = (i) => {
+  let reversed = state.firstSound.map(i => i).reverse();
+  let names = state.firstDisplay.map(i => i).reverse();
+  setState({...state, reverseSound: reversed, secondDisplay: names})
+  let audio = new Audio(state.reverseSound[i]);
+  audio.play();
+  audio.volume = state.volume
+}
+
 let keyDown = (event) => {
   let button = event.key;
   console.log(button);
@@ -144,28 +153,57 @@ useEffect(() => {
 let clicked = (event) => {
   let click = event.target.innerText;
   console.log(click)
+
+
   for(let i = 0; i <= state.firstSound.length; i++){
-    if(click === state.keyBoard[i]){
-      playAudio(i);
-      setState({...state, currentDisplay: state.firstDisplay[i]});
-     }
+
+  if(state.powerSwitch){
+      if(state.soundSwitch){
+        if(click === state.keyBoard[i]){
+          playAudio(i);
+          setState({...state, currentDisplay: state.firstDisplay[i]});
+         }
+      }else {
+        secondAudio(i)
+        setState({...state, currentDisplay: state.secondDisplay[i]})
+      }
+    } else{
+      return;
+    }
+
   }
 }
 
+
+
+
+
+
+
+
+
 let handleVolumeChange = (event) => {
   let target = event.target.value
-  setState({...state, volume: target})
+  setState({...state, volume: target, currentDisplay: 'Volume ' + target})
+}
+
+let handlePower = () => {
+  setState({...state, powerSwitch: !state.powerSwitch})
+}
+let handleSwitch = () => {
+  setState({...state, soundSwitch: !state.soundSwitch})
 }
 
 
 
   return (
     <Board clicked={clicked}
-           sounds={state.firstSound}
            volume={state.volume}
            volumeControl={handleVolumeChange}
            firstDisplay={state.currentDisplay}
            keyBoard={state.keyBoard}
+           switch={handleSwitch}
+           power={handlePower}
            powerSwitch={state.powerSwitch}
            soundSwitch={state.soundSwitch}
     />

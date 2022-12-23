@@ -115,6 +115,8 @@ const [state, setState] = useState({
   soundSwitch: true,
   powerSwitch: true,
   volume: 1,
+  reverseSound: null,
+  secondDisplay: [],
 })
 
 let playAudio = (i) => {
@@ -124,9 +126,6 @@ let playAudio = (i) => {
 }
 
 let secondAudio = (i) => {
-  let reversed = state.firstSound.map(i => i).reverse();
-  let names = state.firstDisplay.map(i => i).reverse();
-  setState({...state, reverseSound: reversed, secondDisplay: names})
   let audio = new Audio(state.reverseSound[i]);
   audio.play();
   audio.volume = state.volume
@@ -152,35 +151,22 @@ useEffect(() => {
 
 let clicked = (event) => {
   let click = event.target.innerText;
-  console.log(click)
-
+  console.log(state)
 
   for(let i = 0; i <= state.firstSound.length; i++){
-
   if(state.powerSwitch){
-      if(state.soundSwitch){
-        if(click === state.keyBoard[i]){
-          playAudio(i);
-          setState({...state, currentDisplay: state.firstDisplay[i]});
-         }
-      }else {
-        secondAudio(i)
-        setState({...state, currentDisplay: state.secondDisplay[i]})
-      }
-    } else{
+    if(click === state.keyBoard[i] && state.soundSwitch){
+      playAudio(i);
+      setState({...state, currentDisplay: state.firstDisplay[i]});
+     }else if(click === state.keyBoard[i] && state.soundSwitch === false){
+      secondAudio(i);
+      setState({...state, currentDisplay: state.secondDisplay[i]});
+     }
+    }else {
       return;
     }
-
   }
 }
-
-
-
-
-
-
-
-
 
 let handleVolumeChange = (event) => {
   let target = event.target.value
@@ -191,7 +177,9 @@ let handlePower = () => {
   setState({...state, powerSwitch: !state.powerSwitch})
 }
 let handleSwitch = () => {
-  setState({...state, soundSwitch: !state.soundSwitch})
+  let reverseSound = state.firstSound.map(i => i).reverse();
+  let reverseDisplay = state.firstDisplay.map(i => i).reverse();
+  setState({...state, soundSwitch: !state.soundSwitch, reverseSound: reverseSound, secondDisplay: reverseDisplay})
 }
 
 

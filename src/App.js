@@ -135,10 +135,17 @@ let keyDown = (event) => {
   let button = event.key;
   console.log(button);
   for(let i = 0; i <= state.firstSound.length; i++){
-    if(button.toUpperCase() === state.keyBoard[i]){
-      playAudio(i);
-      setState({...state, currentDisplay: state.firstDisplay[i]});
-     }
+    if(state.powerSwitch){
+      if(button.toUpperCase() === state.keyBoard[i] && state.soundSwitch){
+        playAudio(i);
+        setState({...state, currentDisplay: state.firstDisplay[i]});
+       }else if(button.toUpperCase() === state.keyBoard[i] && state.soundSwitch === false){
+        secondAudio(i);
+        setState({...state, currentDisplay: state.secondDisplay[i]});
+       }
+      }else {
+        return;
+      }
   }
 }
 

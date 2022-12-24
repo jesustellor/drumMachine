@@ -1,12 +1,40 @@
+button {
+  height:100px;
+  width:100px;
+}
+
 .container {
   border: 2px solid black;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  margin-top: 35vh;
+  margin-left: 35vw;
+  margin-right: 35vw;
+  /* align-content: center; */
 }
+
+@media(max-width: 1500px){
+  button {
+    height: 60px;
+    width: 60px;
+  }
+  .container {
+    border: 2px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 35vh;
+    margin-left: 28vw;
+    margin-right: 28vw;  }
+}
+
 
 #displayBox {
   border: 2px solid black;
+  padding: -5px;
+  font-size: medium;
+  margin: 5px;
 }
 
 @media (prefers-reduced-motion: no-preference) {

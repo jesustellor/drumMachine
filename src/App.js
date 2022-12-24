@@ -99,11 +99,11 @@ let createVolume = () => {
   <div>
   {powerSwitch()}
   </div>
-  <div>
-  {createVolume()}
-  </div>
   <div id='displayBox'>
   {createDisplay()}
+  </div>
+  <div>
+  {createVolume()}
   </div>
   </section>
 </div>

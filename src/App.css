@@ -24,6 +24,7 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    align-content: center;
     margin-top: 35vh;
     margin-left: 10vw;
     margin-right: 10vw;  }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import './App.css'
 
 
 
@@ -72,7 +73,9 @@ let createVolume = () => {
   )
 }
 
-  return (<div>
+  return (
+        <div className='container'>
+   <section>
   <section>
   {createButtons(0)}
   {createButtons(1)}
@@ -88,11 +91,22 @@ let createVolume = () => {
   {createButtons(7)}
   {createButtons(8)}
   </section>
+  </section>
+  <section>
+  <div>
   {soundSwitch()}
+  </div>
+  <div>
   {powerSwitch()}
+  </div>
+  <div>
   {createVolume()}
+  </div>
+  <div id='displayBox'>
   {createDisplay()}
-        </div>
+  </div>
+  </section>
+</div>
   )
 }
 

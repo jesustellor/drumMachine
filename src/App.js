@@ -95,11 +95,11 @@ let createVolume = () => {
   <section>
   <div>
   {soundSwitch()}
-  Sound Switch
+  Switch
   </div>
   <div>
   {powerSwitch()}
-  Power Switch
+  Off / On
   </div>
   <div id='displayBox'>
   {createDisplay()}

@@ -8,7 +8,7 @@ button {
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  margin: 20vh 20vw 0 20vw;
+  margin: 15vh 20vw 0 20vw;
   align-items: center;
   align-content: center;
 }

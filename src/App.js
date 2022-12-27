@@ -5,7 +5,7 @@ import './App.css'
 
 function Buttons(props){
   return(
-    <button className='buttonSounds' onClick={props.onClick}>
+    <button id={props.keyBoard} className='buttonSounds' onClick={props.onClick}>
       {props.keyBoard}
     </button>
   )
@@ -74,8 +74,8 @@ let createVolume = () => {
 }
 
   return (
-        <div className='container'>
-   <section className='sounds'>
+        <div id='drum-machine'>
+   <section className='drum-pad'>
   <section>
   {createButtons(0)}
   {createButtons(1)}
@@ -103,7 +103,7 @@ let createVolume = () => {
   <p>Switch</p>
   </div>
   </section>
-  <div id='displayBox'>
+  <div id='display'>
   {createDisplay()}
   </div>
   <div id='volume'>

@@ -32,23 +32,17 @@ button {
   padding: -15px 0 -15px 0;
 }
 
-/* @media(max-width: 120px){
+@media(max-width: 600px){
   button {
-    height: 60px;
-    width: 60px;
+    height: 80px;
+    width: 80px;
   }
   .container {
-    border: 2px solid black;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    align-content: center;
-    margin-top: 35vh;
-    margin-left: 5vw;
-    margin-right: 5vw;
-    gap: 0px;
-    }
-} */
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

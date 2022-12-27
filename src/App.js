@@ -13,8 +13,8 @@ function Buttons(props){
 
 function Display(props){
   return(
-  <div>
-    <p>{props.value}</p>
+  <div className='display'>
+    <p id='displayValue'>{props.value}</p>
   </div>
   )
 }
@@ -75,7 +75,7 @@ let createVolume = () => {
 
   return (
         <div className='container'>
-   <section>
+   <section className='sounds'>
   <section>
   {createButtons(0)}
   {createButtons(1)}
@@ -92,7 +92,7 @@ let createVolume = () => {
   {createButtons(8)}
   </section>
   </section>
-  <section>
+  <section className='controlls'>
   <div>
   {soundSwitch()}
   Switch

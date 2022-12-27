@@ -3,17 +3,36 @@ button {
   width:100px;
 }
 
-.container {
-  border: 2px solid black;
+#main {
   display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  margin: 15vh 20vw 0 20vw;
+  height: 100vh;
   align-items: center;
-  align-content: center;
+  justify-content: center;
 }
 
-@media(max-width: 120px){
+#root {
+  border: 2px solid rgb(238, 11, 11);
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#displayBox {
+  border: 2px solid black;
+  margin: 25px 2vw 35px 2vw;
+  padding: 20px 0 20px 5%;
+  /* padding: 30px; */
+}
+
+#displayValue {
+  margin: -12px 0 -12px 0;
+  padding: -15px 0 -15px 0;
+}
+
+/* @media(max-width: 120px){
   button {
     height: 60px;
     width: 60px;
@@ -29,15 +48,7 @@ button {
     margin-right: 5vw;
     gap: 0px;
     }
-}
-
-
-#displayBox {
-  border: 2px solid black;
-  padding: -5px;
-  font-size: medium;
-  margin: 5px;
-}
+} */
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

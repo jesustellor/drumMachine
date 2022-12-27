@@ -93,18 +93,21 @@ let createVolume = () => {
   </section>
   </section>
   <section className='controlls'>
-  <div>
-  {soundSwitch()}
-  Switch
-  </div>
+  <section className='switches'>
   <div>
   {powerSwitch()}
-  Off / On
+  <p>Off / On</p>
   </div>
+  <div>
+  {soundSwitch()}
+  <p>Switch</p>
+  </div>
+  </section>
   <div id='displayBox'>
   {createDisplay()}
   </div>
-  <div>
+  <div id='volume'>
+  Volume:
   {createVolume()}
   </div>
   </section>

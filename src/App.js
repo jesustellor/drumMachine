@@ -115,7 +115,7 @@ let createVolume = () => {
   )
 }
 
-function App() {
+export default function App() {
 
 const [state, setState] = useState({
   keyBoard: ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C'],
@@ -223,5 +223,3 @@ let handleSwitch = () => {
     />
   )
 }
-
-export default App;

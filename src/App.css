@@ -1,6 +1,6 @@
 button {
-  height:100px;
-  width:100px;
+  height:90px;
+  width:90px;
 }
 
 #main {
@@ -102,15 +102,15 @@ input:checked + .slider:before {
 }
 
 @media(max-width: 500px){
-  .drum-machine {
-    flex-direction: column-reverse;
-  }
   .switches {
     display: flex;
     margin: 0;
     flex-direction: row-reverse;
     justify-content: space-evenly;
     padding: 20px 0 0px 0;
+  }
+  #drum-machine {
+    flex-direction: column-reverse;
   }
   #display {
     margin: 5px 20% 20px 20%;
@@ -171,7 +171,6 @@ input:checked + .slider:before {
     transform: translateX(26px);
   }
   
-  /* Rounded sliders */
   .slider.round {
     border-radius: 34px;
   }
